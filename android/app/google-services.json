@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "245251469550",
+    "project_id": "eveapp-19d51",
+    "storage_bucket": "eveapp-19d51.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:245251469550:android:934724621df3bbfe4283ff",
+        "android_client_info": {
+          "package_name": "com.example.eveapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "245251469550-jrti3n9r7ur628g4livq9oirkrqdlclg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvY3myzPkc2bM6Kd7zjtRuMi3vVq3e_4M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "245251469550-jrti3n9r7ur628g4livq9oirkrqdlclg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
