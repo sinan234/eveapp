@@ -1,3 +1,4 @@
+import 'package:eveapp/screens/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -36,7 +37,8 @@ class _SignUPState extends State<SignUP> {
           ),
           controller: _password,
         ),
-        ElevatedButton(onPressed: (){usersignup(_username.text, _password.text);}, child: Text("login",))
+        ElevatedButton(onPressed: (){usersignup(_username.text, _password.text);}, child: Text("sign up",)),
+        TextButton(onPressed: ()=> Navigator.push(context, MaterialPageRoute(builder: (context) => Login(),)), child: Text("already have a ACCOUNT? sign in."))
       
 
 

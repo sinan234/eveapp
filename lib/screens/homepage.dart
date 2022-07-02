@@ -1,4 +1,6 @@
+import 'package:eveapp/screens/login.dart';
 import 'package:eveapp/screens/signup.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
@@ -15,9 +17,11 @@ class _MapScreenState extends State<MapScreen> {
   GoogleMapController? _controller;
   Location currentLocation = Location();
   Set<Marker> _markers={};
+  bool isuserloggined = false;
  
  
   void getLocation() async{
+    
     var location = await currentLocation.getLocation();
     currentLocation.onLocationChanged.listen((LocationData loc){
  
@@ -51,7 +55,7 @@ class _MapScreenState extends State<MapScreen> {
            child: Column(
             children: [
               GestureDetector(
-                onTap: (() => Navigator.push(context, MaterialPageRoute(builder: (context) => SignUP(),))),
+                onTap: (() => Navigator.push(context, MaterialPageRoute(builder: (context) => Login(),))),
                 child: Padding(padding:EdgeInsets.symmetric(vertical: 60),
                 child: Card(
                   child: Center(
@@ -68,6 +72,14 @@ class _MapScreenState extends State<MapScreen> {
         ),
         appBar: AppBar(
           title: Text("eve"),
+          actions: [
+            Column(
+            children: [
+              isuserloggined?
+              Text("add my place"):Container()
+            ],
+            )
+          ],
         ),
         body: Container(
           height: MediaQuery.of(context).size.height,
