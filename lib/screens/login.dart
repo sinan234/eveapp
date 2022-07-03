@@ -13,38 +13,91 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-
   @override
   Widget build(BuildContext context) {
- TextEditingController _username =TextEditingController();
-    TextEditingController _password =TextEditingController();
-    void userlogin(String email, String password)async {
-   await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password).whenComplete(() => Navigator.push(context, MaterialPageRoute(builder: (context) => MapScreen() )));
-  }
-    return(
+    TextEditingController _username = TextEditingController();
+    TextEditingController _password = TextEditingController();
+    void userlogin(String email, String password) async {
+      await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password)
+          .whenComplete(() => Navigator.push(
+              context, MaterialPageRoute(builder: (context) => MapScreen())));
+    }
 
-      Scaffold(appBar: AppBar()
-      ,
-      body: Column(
-      children: [
-        TextFormField(
-          decoration:InputDecoration(
-            hintText: "username"
-            
-          ),
-          controller: _username,
+    return (Scaffold(
+        appBar: AppBar(
+          title: const Text('Provider Login'),
         ),
-        TextFormField(
-          decoration:InputDecoration(
-            hintText: "password"
+        body: SingleChildScrollView(
+          child: Container(
+            padding: const EdgeInsets.only(left: 20, top: 25, right: 20),
+            child: Column(
+              // crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                TextFormField(
+                  decoration: const InputDecoration(
+                    hintText: "Enter Your UserName",
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.teal),
+                      borderRadius: BorderRadius.all(Radius.circular(16)),
+                    ),
+                    prefixIcon: Icon(
+                      Icons.person,
+                      color: Colors.blue,
+                    ),
+                  ),
+                  controller: _username,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                TextFormField(
+                  decoration: const InputDecoration(
+                    hintText: "Enter Your Password",
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.teal),
+                      borderRadius: BorderRadius.all(Radius.circular(16)),
+                    ),
+                    prefixIcon: Icon(
+                      Icons.person,
+                      color: Colors.blue,
+                    ),
+                  ),
+                  controller: _password,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                InkWell(
+                  onTap: () {
+                    userlogin(_username.text, _password.text);
+                  },
+                  child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: Colors.blue),
+                      height: 50,
+                      width: double.infinity,
+                      child: const Center(
+                        child: Text(
+                          "Login",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      )),
+                ),
+                TextButton(
+                    onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const SignUP(),
+                        )),
+                    child: const Text("SignUp For New Providers"))
+              ],
+            ),
           ),
-          controller: _password,
-        ),
-        ElevatedButton(onPressed: (){userlogin(_username.text, _password.text);}, child: Text("login",)),
-        TextButton(onPressed: ()=> Navigator.push(context, MaterialPageRoute(builder: (context) => SignUP(),)), child: Text("dont have a ACCOUNT? Create one."))
-      ]
-        ,)
-        
-      )   );
+        )));
   }
 }
