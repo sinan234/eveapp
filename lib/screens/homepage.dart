@@ -1,3 +1,6 @@
+import 'dart:ffi';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eveapp/screens/login.dart';
 import 'package:eveapp/screens/signup.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -18,6 +21,8 @@ class _MapScreenState extends State<MapScreen> {
   Location currentLocation = Location();
   Set<Marker> _markers={};
   bool isuserloggined = false;
+
+
  
  
   void getLocation() async{
@@ -32,11 +37,23 @@ class _MapScreenState extends State<MapScreen> {
       print(loc.latitude);
       print(loc.longitude);
       setState(() {
-        _markers.add(Marker(markerId: MarkerId('Home'),
+        _markers.add(Marker(markerId: const MarkerId('Home'),
             position: LatLng(loc.latitude ?? 0.0, loc.longitude ?? 0.0)
         ));
       });
        });
+  }
+      void getRegisteredChargingStations()async{
+    QuerySnapshot<Map<String, dynamic>> collectionReference = await FirebaseFirestore.instance.collection("addded location").get();
+    for (var element in collectionReference.docs) { 
+      setState(() {
+        _markers.add(const Marker(markerId: MarkerId('Home'),
+            position: LatLng(11.6854, 76.1320)
+        ));
+      });
+    }
+   
+
   }
  
   @override
@@ -44,8 +61,10 @@ class _MapScreenState extends State<MapScreen> {
     super.initState();
     setState(() {
       getLocation();
+      getRegisteredChargingStations();
     });
   }
+
  
   @override
   Widget build(BuildContext context) {
@@ -55,13 +74,13 @@ class _MapScreenState extends State<MapScreen> {
            child: Column(
             children: [
               GestureDetector(
-                onTap: (() => Navigator.push(context, MaterialPageRoute(builder: (context) => Login(),))),
-                child: Padding(padding:EdgeInsets.symmetric(vertical: 60),
+                onTap: (() => Navigator.push(context, MaterialPageRoute(builder: (context) => const Login(),))),
+                child: const Padding(padding:EdgeInsets.symmetric(vertical: 60),
                 child: Card(
                   child: Center(
                     child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text("Report new Charger ", style: TextStyle(fontSize: 19,color: Colors.blue,backgroundColor: Colors.white)),
+                      padding: EdgeInsets.all(10.0),
+                      child: Text("Report new Charger ", style: TextStyle(fontSize: 19,fontWeight: FontWeight.bold,color: Colors.blue,backgroundColor: Colors.white)),
                     ),
                   ) ,
                 ),
@@ -71,12 +90,12 @@ class _MapScreenState extends State<MapScreen> {
            ),
         ),
         appBar: AppBar(
-          title: Text("eve"),
+          title: const Text("eve"),
           actions: [
             Column(
             children: [
               isuserloggined?
-              Text("add my place"):Container()
+              const Text("add my place"):Container()
             ],
             )
           ],
@@ -85,9 +104,10 @@ class _MapScreenState extends State<MapScreen> {
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child:GoogleMap(
+           
             zoomControlsEnabled: false,
-            initialCameraPosition:CameraPosition(
-              target: LatLng(11.6854, 76.1320),
+            initialCameraPosition:const CameraPosition(
+              target: const LatLng(11.6854, 76.1320),
               zoom: 10.0,
             ),
             onMapCreated: (GoogleMapController controller){
@@ -97,7 +117,7 @@ class _MapScreenState extends State<MapScreen> {
           ) ,
         ),
         floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.location_searching,color: Colors.white,),
+          child: const Icon(Icons.location_searching,color: Colors.white,),
           onPressed: (){
             if (Permission.location.isGranted == false){
               Permission.location.request();
@@ -111,4 +131,5 @@ class _MapScreenState extends State<MapScreen> {
       ),
     );
   }
+  
 }

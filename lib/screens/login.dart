@@ -1,3 +1,4 @@
+import 'package:eveapp/screens/details.dart';
 import 'package:eveapp/screens/homepage.dart';
 import 'package:eveapp/screens/signup.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -21,7 +22,7 @@ class _LoginState extends State<Login> {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password)
           .whenComplete(() => Navigator.push(
-              context, MaterialPageRoute(builder: (context) => MapScreen())));
+              context, MaterialPageRoute(builder: (context) => Details())));
     }
 
     return (Scaffold(
@@ -36,7 +37,7 @@ class _LoginState extends State<Login> {
               children: [
                 TextFormField(
                   decoration: const InputDecoration(
-                    hintText: "Enter Your UserName",
+                    hintText: "Enter Your Email",
                     border: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.teal),
                       borderRadius: BorderRadius.all(Radius.circular(16)),
@@ -59,7 +60,7 @@ class _LoginState extends State<Login> {
                       borderRadius: BorderRadius.all(Radius.circular(16)),
                     ),
                     prefixIcon: Icon(
-                      Icons.person,
+                      Icons.lock,
                       color: Colors.blue,
                     ),
                   ),
@@ -83,7 +84,7 @@ class _LoginState extends State<Login> {
                           "Login",
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize: 22,
+                              fontSize: 18,
                               fontWeight: FontWeight.bold),
                         ),
                       )),

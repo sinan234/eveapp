@@ -20,7 +20,7 @@ class _SignUPState extends State<SignUP> {
     await FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email, password: password)
         .whenComplete(() => Navigator.push(
-            context, MaterialPageRoute(builder: (context) => MapScreen())));
+            context, MaterialPageRoute(builder: (context) => Login())));
   }
 
   @override
@@ -60,7 +60,7 @@ class _SignUPState extends State<SignUP> {
                       borderRadius: BorderRadius.all(Radius.circular(16)),
                     ),
                     prefixIcon: Icon(
-                      Icons.person,
+                      Icons.lock,
                       color: Colors.blue,
                     ),
                   ),
@@ -77,11 +77,11 @@ class _SignUPState extends State<SignUP> {
                       borderRadius: BorderRadius.all(Radius.circular(16)),
                     ),
                     prefixIcon: Icon(
-                      Icons.person,
+                      Icons.lock,
                       color: Colors.blue,
                     ),
-                  ),
-                  controller: _password,
+                  )
+                  
                 ),
                 const SizedBox(
                   height: 20,
@@ -113,7 +113,7 @@ class _SignUPState extends State<SignUP> {
                         MaterialPageRoute(
                           builder: (context) => const Login(),
                         )),
-                    child: const Text("SignIn For"))
+                    child: const Text("Already have an Account? Sign In"))
               ],
             ),
           ),
