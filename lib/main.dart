@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:eveapp/screens/details.dart';
 import 'package:eveapp/screens/homepage.dart';
 import 'package:eveapp/screens/login.dart';
+import 'package:eveapp/screens/splashScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -30,7 +31,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home:MapScreen(),
+      home:SplashScreen(),
     );
   }
   

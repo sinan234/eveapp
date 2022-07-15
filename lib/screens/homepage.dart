@@ -20,12 +20,13 @@ class _MapScreenState extends State<MapScreen> {
   GoogleMapController? _controller;
   Location currentLocation = Location();
   Set<Marker> _markers={};
-  bool isuserloggined = false;
+  bool isuserloggined = true;
 
 
  
  
   void getLocation() async{
+            
     
     var location = await currentLocation.getLocation();
     currentLocation.onLocationChanged.listen((LocationData loc){
@@ -45,16 +46,24 @@ class _MapScreenState extends State<MapScreen> {
   }
       void getRegisteredChargingStations()async{
     QuerySnapshot<Map<String, dynamic>> collectionReference = await FirebaseFirestore.instance.collection("addded location").get();
-    for (var element in collectionReference.docs) { 
+    collectionReference.docs.forEach((element) {
+      print(element.data());
       setState(() {
-        _markers.add(const Marker(markerId: MarkerId('Home'),
-            position: LatLng(11.6854, 76.1320)
-        ));
+        _markers.add(Marker(markerId: MarkerId(element.id),position: LatLng(element.data().entries.elementAt(2).value["latitude"], element.data().entries.elementAt(2).value["longitude"]), infoWindow:  InfoWindow( //popup info 
+          title: element.data().entries.elementAt(3).value["Name"],
+          snippet: 'EV Charging Station',
+        ), ));G
       });
-    }
+    });
    
 
   }
+
+//   {equipment_details: {charging_level: b, charger_availability: a, connectionType: a}, charging_details: {usage_type:
+// a, working_hours: a, number_of_ports: a, operator: a, status: a}, location_details: {latitude: 11.8354111, longitude: 75.9692691}, adress_details:{country: a, pincode: a, phoneNumber: a, city_town: a, AdressLine: a, state: a, landmark: a, Name: a}}
+// [   +8 ms] I/flutter (17186): {charging_details: {usage_type:   h, working_hours: b, number_of_ports: b, operator: b, status: b},
+// equipment_details: {charging_level: f, charger_availability: f, connectionType:  f}, location_details: {latitude: 11.8354529, longitude:
+// 75.9692461}, adress_details: {pincode: b, country: n, phoneNumber: b, city_town: b, AdressLine:  b, state: b, landmark: n, Name:  b}}
  
   @override
   void initState(){
@@ -65,9 +74,16 @@ class _MapScreenState extends State<MapScreen> {
     });
   }
 
+  
+
  
   @override
   Widget build(BuildContext context) {
+    // if(FirebaseAuth.instance.currentUser!.uid.isNotEmpty ){
+    //   setState(() {
+    //     isuserloggined == true;
+    //   });
+    // }
     return SafeArea(
       child: Scaffold(
         drawer: Drawer(
@@ -94,8 +110,9 @@ class _MapScreenState extends State<MapScreen> {
           actions: [
             Column(
             children: [
-              isuserloggined?
-              const Text("add my place"):Container()
+              isuserloggined?ElevatedButton.icon(onPressed:() {
+                
+              }, icon: Icon(Icons.logout_outlined), label: Text("Logout")):Container()
             ],
             )
           ],
@@ -130,6 +147,9 @@ class _MapScreenState extends State<MapScreen> {
         ),
       ),
     );
+  }
+  void firebase_logout()async{
+    FirebaseAuth.instance.signOut();
   }
   
 }

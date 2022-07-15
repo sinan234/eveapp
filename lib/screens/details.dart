@@ -292,8 +292,8 @@ class _DetailsState extends State<Details> {
        await collectionReference.doc(FirebaseAuth.instance.currentUser!.uid).set({
         "location_details":{
 
-        "latitude":latitude,
-        "longitude":longitude,
+        "latitude":int.parse(latitude),
+        "longitude":int.parse(longitude),
         },
         "adress_details":{
         "Name":_name.text,
