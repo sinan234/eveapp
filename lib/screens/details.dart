@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:eveapp/screens/homepage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -52,13 +53,17 @@ class _DetailsState extends State<Details> {
         
             children: [
               const SizedBox(height: 20),
-              const Text("ADD A CHARGING LOCATION",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: Colors.blue)),
+              const Text("ADD A CHARGING LOCATION",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color:  Color.fromARGB(255, 2, 28, 49))),
               const SizedBox(height: 15),
-                const Text("STEP 1-LOCATION DETAILS ",style: TextStyle(fontSize: 21,color: Colors.blue)),
+                const Text("LOCATION DETAILS ",style: TextStyle(fontSize: 21,color: Color.fromARGB(255, 2, 28, 49),)),
                  const SizedBox(height: 15),
               TextFormField(
                 controller: _latitude,
-                decoration: const InputDecoration(hintText: "Latitude",
+                
+                decoration: const InputDecoration(hintText: "Latitude",prefixIcon: const Icon(
+                        Icons.location_on_outlined,
+                        color:  Color.fromARGB(255, 2, 28, 49),
+                      ),
                 border: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.teal),
                         borderRadius: BorderRadius.all(Radius.circular(16)),
@@ -68,7 +73,10 @@ class _DetailsState extends State<Details> {
               const SizedBox(height: 10),
               TextFormField(
                 controller: _longitude,
-                decoration: const InputDecoration(hintText: "Longitude",
+                decoration: const InputDecoration(hintText: "Longitude",prefixIcon: const Icon(
+                        Icons.location_on_outlined,
+                        color:  Color.fromARGB(255, 2, 28, 49),
+                      ),
                  border: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.teal),
                         borderRadius: BorderRadius.all(Radius.circular(16)),
@@ -86,11 +94,15 @@ class _DetailsState extends State<Details> {
               )),
               
                const SizedBox(height: 20),
-              const Text("STEP 2-ADDRESS DETAILS ",style: TextStyle(fontSize: 21,color: Colors.blue)),
+              const Text("ADDRESS DETAILS ",style: TextStyle(fontSize: 21,color: Color.fromARGB(255, 2, 28, 49))),
                  const SizedBox(height: 20),
                 TextFormField(
                   controller: _name,
-                decoration: const InputDecoration(hintText: " Name",
+                  
+                decoration: const InputDecoration(hintText: " Name",prefixIcon: const Icon(
+                        Icons.person_pin_circle_outlined,
+                        color:  Color.fromARGB(255, 2, 28, 49),
+                      ),
                  border: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.teal),
                         borderRadius: BorderRadius.all(Radius.circular(16)),
@@ -100,7 +112,10 @@ class _DetailsState extends State<Details> {
                   const SizedBox(height: 10),
                 TextFormField(
                   controller: _adressline,
-                decoration: const InputDecoration(hintText: "Address line",
+                decoration: const InputDecoration(hintText: "Address line",prefixIcon: const Icon(
+                        Icons.house_rounded,
+                        color: Color.fromARGB(255, 2, 28, 49),
+                      ),
                  border: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.teal),
                         borderRadius: BorderRadius.all(Radius.circular(16)),
@@ -110,7 +125,10 @@ class _DetailsState extends State<Details> {
                const SizedBox(height: 10),
                TextFormField(
                 controller: _cityTown,
-                decoration: const InputDecoration(hintText: "City or Town Name",
+                decoration: const InputDecoration(hintText: "City or Town Name",prefixIcon: const Icon(
+                        Icons.location_city_rounded,
+                        color: Color.fromARGB(255, 2, 28, 49),
+                      ),
                  border: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.teal),
                         borderRadius: BorderRadius.all(Radius.circular(16)),
@@ -120,7 +138,10 @@ class _DetailsState extends State<Details> {
                const SizedBox(height: 10),
                TextFormField(
                 controller: _landmark,
-                decoration: const InputDecoration(hintText: "Nearest Landmark",
+                decoration: const InputDecoration(hintText: "Nearest Landmark",prefixIcon: const Icon(
+                        Icons.landscape,
+                        color: Color.fromARGB(255, 2, 28, 49),
+                      ),
                  border: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.teal),
                         borderRadius: BorderRadius.all(Radius.circular(16)),
@@ -130,7 +151,10 @@ class _DetailsState extends State<Details> {
                const SizedBox(height: 10),
                TextFormField(
                 controller: _state,
-                decoration: const InputDecoration(hintText: "State or Province",
+                decoration: const InputDecoration(hintText: "State or Province",prefixIcon: const Icon(
+                        Icons.villa_outlined,
+                        color: Color.fromARGB(255, 2, 28, 49),
+                      ),
                  border: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.teal),
                         borderRadius: BorderRadius.all(Radius.circular(16)),
@@ -140,7 +164,10 @@ class _DetailsState extends State<Details> {
                const SizedBox(height: 10),
                TextFormField(
                 controller: _pincode,
-                decoration: const InputDecoration(hintText: "Zip/Postal code",
+                decoration: const InputDecoration(hintText: "Zip/Postal code",prefixIcon: const Icon(
+                        Icons.local_post_office_outlined,
+                        color: Color.fromARGB(255, 2, 28, 49),
+                      ),
                  border: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.teal),
                         borderRadius: BorderRadius.all(Radius.circular(16)),
@@ -150,7 +177,10 @@ class _DetailsState extends State<Details> {
                const SizedBox(height: 10),
                TextFormField(
                 controller: _phone_number,
-                decoration: const InputDecoration(hintText: "Phone no",
+                decoration: const InputDecoration(hintText: "Phone no",prefixIcon: const Icon(
+                        Icons.phone,
+                        color: Color.fromARGB(255, 2, 28, 49),
+                      ),
                  border: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.teal),
                         borderRadius: BorderRadius.all(Radius.circular(16)),
@@ -160,7 +190,10 @@ class _DetailsState extends State<Details> {
                const SizedBox(height: 10),
                TextFormField(
                 controller: _country,
-                decoration: const InputDecoration(hintText: "Country",
+                decoration: const InputDecoration(hintText: "Country",prefixIcon: const Icon(
+                        Icons.other_houses_outlined,
+                        color: Color.fromARGB(255, 2, 28, 49),
+                      ),
                  border: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.teal),
                         borderRadius: BorderRadius.all(Radius.circular(16)),
@@ -168,11 +201,14 @@ class _DetailsState extends State<Details> {
               ),
               ),
                const SizedBox(height: 20),
-               const Text("STEP 3-BASIC CHARGING DETAILS ",style: TextStyle(fontSize: 21,color: Colors.blue)),
+               const Text("BASIC CHARGING DETAILS ",style: TextStyle(fontSize: 21,color: Color.fromARGB(255, 2, 28, 49),fontFamily: 'opensans')),
                 const SizedBox(height: 15),
                 TextFormField(
                   controller: _isAvailable,
-                decoration: const InputDecoration(hintText: "Operational Status",
+                decoration: const InputDecoration(hintText: "Operational Status",prefixIcon: const Icon(
+                        Icons.hourglass_bottom_rounded,
+                        color: Color.fromARGB(255, 2, 28, 49),
+                      ),
                  border: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.teal),
                         borderRadius: BorderRadius.all(Radius.circular(16)),
@@ -182,7 +218,10 @@ class _DetailsState extends State<Details> {
               const SizedBox(height: 10),
                TextFormField(
                 controller: _operator,
-                decoration: const InputDecoration(hintText: "Operator",
+                decoration: const InputDecoration(hintText: "Operator",prefixIcon: const Icon(
+                        Icons.settings_applications_sharp,
+                        color: Color.fromARGB(255, 2, 28, 49),
+                      ),
                  border: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.teal),
                         borderRadius: BorderRadius.all(Radius.circular(16)),
@@ -192,7 +231,10 @@ class _DetailsState extends State<Details> {
                const SizedBox(height: 10),
                TextFormField(
                 controller: _usageType,
-                decoration: const InputDecoration(hintText: "Usage type",
+                decoration: const InputDecoration(hintText: "Usage type",prefixIcon: const Icon(
+                        Icons.public,
+                        color: Color.fromARGB(255, 2, 28, 49),
+                      ),
                  border: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.teal),
                         borderRadius: BorderRadius.all(Radius.circular(16)),
@@ -202,7 +244,10 @@ class _DetailsState extends State<Details> {
                const SizedBox(height: 10),
                TextFormField(
                 controller: _workingHours,
-                decoration: const InputDecoration(hintText: "Working Hours",
+                decoration: const InputDecoration(hintText: "Working Hours",prefixIcon: const Icon(
+                        Icons.timelapse_outlined,
+                        color: Color.fromARGB(255, 2, 28, 49),
+                      ),
                  border: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.teal),
                         borderRadius: BorderRadius.all(Radius.circular(16)),
@@ -212,7 +257,10 @@ class _DetailsState extends State<Details> {
                const SizedBox(height: 10),
                TextFormField(
                 controller: _ports,
-                decoration: const InputDecoration(hintText: "Number of Ports",
+                decoration: const InputDecoration(hintText: "Number of Ports",prefixIcon: const Icon(
+                        Icons.account_tree_rounded,
+                        color: Color.fromARGB(255, 2, 28, 49),
+                      ),
                  border: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.teal),
                         borderRadius: BorderRadius.all(Radius.circular(16)),
@@ -220,11 +268,14 @@ class _DetailsState extends State<Details> {
               ),
               ),
                 const SizedBox(height: 15),
-               const Text("STEP 4-EQUIPEMENT DETAILS ",style: TextStyle(fontSize: 21,color: Colors.blue)),
+               const Text("EQUIPEMENT DETAILS ",style: TextStyle(fontSize: 21,color: Color.fromARGB(255, 2, 28, 49))),
                 const SizedBox(height: 15),
                 TextFormField(
                   controller: _connectionType,
-                decoration: const InputDecoration(hintText: "Connection type",
+                decoration: const InputDecoration(hintText: "Connection type",prefixIcon: const Icon(
+                        Icons.construction_outlined,
+                        color: Color.fromARGB(255, 2, 28, 49),
+                      ),
                  border: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.teal),
                         borderRadius: BorderRadius.all(Radius.circular(16)),
@@ -234,7 +285,10 @@ class _DetailsState extends State<Details> {
                const SizedBox(height: 10),
                 TextFormField(
                   controller: _chargerAvailability,
-                decoration: const InputDecoration(hintText: "Charger Availability",
+                decoration: const InputDecoration(hintText: "Charger Availability",prefixIcon: const Icon(
+                        Icons.power_outlined,
+                        color: Color.fromARGB(255, 2, 28, 49),
+                      ),
                  border: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.teal),
                         borderRadius: BorderRadius.all(Radius.circular(16)),
@@ -244,7 +298,10 @@ class _DetailsState extends State<Details> {
              const SizedBox(height: 10),
                 TextFormField(
                   controller: _chargingLevel,
-                decoration: const InputDecoration(hintText: "Charging level",
+                decoration: const InputDecoration(hintText: "Charging level",prefixIcon: const Icon(
+                        Icons.currency_rupee_rounded,
+                        color: Color.fromARGB(255, 2, 28, 49),
+                      ),
                  border: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.teal),
                         borderRadius: BorderRadius.all(Radius.circular(16)),
@@ -289,11 +346,12 @@ class _DetailsState extends State<Details> {
        
        void updateIntoFirebase()async{
          CollectionReference collectionReference = FirebaseFirestore.instance.collection("addded location");
-       await collectionReference.doc(FirebaseAuth.instance.currentUser!.uid).set({
+         try {
+                  await collectionReference.doc(FirebaseAuth.instance.currentUser!.uid).set({
         "location_details":{
 
-        "latitude":int.parse(latitude),
-        "longitude":int.parse(longitude),
+        "latitude":double.parse(_latitude.text),
+        "longitude":double.parse(_longitude.text),
         },
         "adress_details":{
         "Name":_name.text,
@@ -326,6 +384,11 @@ class _DetailsState extends State<Details> {
 
 
         
-       });
+       }).whenComplete(() => Navigator.push(context, MaterialPageRoute(builder: (_)=>MapScreen())));
+         }on FirebaseException catch (e) {
+          print(e.message);
+           
+         }
+
   }
 }
