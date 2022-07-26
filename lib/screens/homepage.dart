@@ -245,7 +245,7 @@ class _MapScreenState extends State<MapScreen> {
            ),
         ),
         appBar: AppBar(
-          title: const Text("EVE LOCATOR"),
+          title: const Text("EV MAP"),
 
         ),
       
@@ -261,7 +261,7 @@ class _MapScreenState extends State<MapScreen> {
                 zoomControlsEnabled: false,
                 initialCameraPosition:const CameraPosition(
                   target: const LatLng(11.6854, 76.1320),
-                  zoom: 20.0,
+                  zoom: 11.0,
                 ),
                 onMapCreated: (GoogleMapController controller){
                   _controller = controller;
