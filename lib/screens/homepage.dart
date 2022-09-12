@@ -1,4 +1,5 @@
 
+
 import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -18,6 +19,14 @@ import 'package:permission_handler/permission_handler.dart';
  
  
 class MapScreen extends StatefulWidget {
+  double latitude;
+  
+  double longitude;
+
+  MapScreen({required this.latitude, required this.longitude});
+
+
+
   @override
   _MapScreenState createState() => _MapScreenState();
 }
@@ -259,9 +268,10 @@ class _MapScreenState extends State<MapScreen> {
               child:GoogleMap(
                
                 zoomControlsEnabled: false,
-                initialCameraPosition:const CameraPosition(
-                  target: const LatLng(11.6854, 76.1320),
-                  zoom: 11.0,
+                initialCameraPosition: CameraPosition(
+                  
+                  target: LatLng(widget.latitude, widget.longitude),
+                  zoom: 13,
                 ),
                 onMapCreated: (GoogleMapController controller){
                   _controller = controller;

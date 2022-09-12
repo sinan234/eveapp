@@ -384,7 +384,7 @@ class _DetailsState extends State<Details> {
 
 
         
-       }).whenComplete(() => Navigator.push(context, MaterialPageRoute(builder: (_)=>MapScreen())));
+       }).whenComplete(() => Navigator.push(context, MaterialPageRoute(builder: (_)=>MapScreen(latitude: 52,longitude: 68,))));
          }on FirebaseException catch (e) {
           print(e.message);
            

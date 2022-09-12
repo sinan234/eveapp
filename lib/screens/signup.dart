@@ -25,7 +25,7 @@ class _SignUPState extends State<SignUP> {
                 }
     if(password1!=password2){
       ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Passwords not maching')),
+                    const SnackBar(content: Text('Passwords are not matching')),
                   );
     }else{
 
@@ -44,7 +44,7 @@ class _SignUPState extends State<SignUP> {
     ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('email-already-in-use')),
                   );
-    print('The account already exists for that email.');
+    print('The account already exists.');
   }
     }
     }
@@ -83,7 +83,7 @@ class _SignUPState extends State<SignUP> {
                         borderRadius: BorderRadius.all(Radius.circular(16)),
                       ),
                       prefixIcon: Icon(
-                        Icons.person_pin_circle_outlined,
+                        Icons.person,
                         color: Colors.blue,
                       ),
                     ),
@@ -99,7 +99,7 @@ class _SignUPState extends State<SignUP> {
                             if (value == null || value.isEmpty) {
                               return 'Enter your password';
                             }else if(value.length<7){
-                              return "minimum 6 digit password reqiured";
+                              return "Password must contain atleast 8 digits";
                             }
                             setState(() {
                               password1 = value;
